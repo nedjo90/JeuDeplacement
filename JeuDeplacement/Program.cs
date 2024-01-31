@@ -8,7 +8,28 @@ namespace JeuDeplacement
     {
         public static void Main(string[] args)
         {
-            
+            bool play = true;
+            while (play)
+            {
+                Console.Clear();
+                Console.SetCursorPosition(0, 15);
+                Console.WriteLine("1 - Play");
+                Console.WriteLine("2 - Quit");
+                int choix = Convert.ToInt32(Console.ReadLine());
+                if (choix == 1)
+                {
+                    start();
+                } else if (choix == 2)
+                {
+                    play = false;
+                }
+            }
+           
+        }
+
+        public static void start()
+        {
+             
             char[,]grille = creerGrille();
             LinkedList<int[]> snake = creerSnake(grille);
             int points = 0;
@@ -27,7 +48,7 @@ namespace JeuDeplacement
                            && key.Key != ConsoleKey.LeftArrow 
                            && key.Key != ConsoleKey.RightArrow)
                     {
-                        Thread.Sleep(100);
+                        Thread.Sleep(10);
                         key = Console.ReadKey(true);
                     }
                     sens = pressedKey(key, sens);
@@ -42,7 +63,7 @@ namespace JeuDeplacement
                 else if(sens == 'B')
                     deplacerBas(grille, snake,ref points);
 
-                Thread.Sleep(100);
+                Thread.Sleep(50);
             }
 
         }
